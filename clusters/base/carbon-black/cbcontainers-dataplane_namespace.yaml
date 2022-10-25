@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  annotations:
+    meta.helm.sh/release-name: cbcontainers-operator
+    meta.helm.sh/release-namespace: cbcontainers-dataplane
+  labels:
+    app.kubernetes.io/managed-by: Helm
+    control-plane: operator
+    kubernetes.io/metadata.name: cbcontainers-dataplane
+    octarine: ignore
+  name: cbcontainers-dataplane

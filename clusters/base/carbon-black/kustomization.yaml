@@ -1,0 +1,7 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - cbcontainers-dataplane_namespace.yaml
+  - octarine-operator_gitrepository.yaml
+  - cbcontainers-operator_helmrelease.yaml
+  - cbcontainers-agent_helmrelease.yaml

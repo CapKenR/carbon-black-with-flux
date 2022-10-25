@@ -1,0 +1,32 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: cbcontainers-agent
+  namespace: flux-system
+spec:
+  interval: 1h0m0s
+  dependsOn:
+    - name: cbcontainers-operator
+  releaseName: cbcontainers-agent
+  targetNamespace: cbcontainers-dataplane
+  chart:
+    spec:
+      chart: charts/cbcontainers-agent/cbcontainers-agent-chart
+      reconcileStrategy: Revision
+      sourceRef:
+        kind: GitRepository
+        name: octarine-operator
+        namespace: flux-system
+  values:
+    orgKey: "7V6FRXY4"
+    version: "2.8.0"
+    clusterGroup: "default"
+    gateways:
+      apiGatewayHost: defense-prod05.conferdeploy.net
+      coreEventsGatewayHost: events.containers.carbonblack.io
+      hardeningEventsGatewayHost: events.containers.carbonblack.io
+      runtimeEventsGatewayHost: runtime.events.containers.carbonblack.io
+  install:
+    crds: Create
+  upgrade:
+    crds: CreateReplace
